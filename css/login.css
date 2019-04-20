@@ -1,0 +1,56 @@
+html,
+body {
+    height: 100%;
+    font-family: 'Metrophobic', sans-serif;
+}
+
+#login{
+    font-family: 'Metrophobic', sans-serif;
+    height: 100%;
+    background-image: url("../img/loginwallpaper.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.container {
+    height: 100%;
+    align-content: center;
+}
+.error{
+    color: #fff;
+}
+
+.card {
+    animation-delay: 0.5s;
+    min-height: 290px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.card-header h3 {
+    color: white;
+}
+
+.input-group-prepend span {
+    width: 50px;
+    background-color: royalblue;
+    color: #fff;
+    border: 0 !important;
+}
+
+input:focus {
+    outline: 0 0 0 0 !important;
+    box-shadow: 0 0 0 0 !important;
+}
+
+.links {
+    color: white;
+}
+
+.links a {
+    margin-left: 4px;
+}

@@ -1,0 +1,55 @@
+html,
+body {
+    height: 100%;
+    font-family: 'Metrophobic', sans-serif;
+    background-image: url("../img/aboutwallpaper.png");
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#teams {
+    font-family: 'Metrophobic', sans-serif;
+    height: 100%;
+  
+}
+
+header.masthead {
+    text-align: center;
+    position: relative;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    animation-delay: 0.1s;
+    animation-duration: .5s;
+    background-color: #343a40;
+}
+
+
+@media (min-width: 360px) {
+    header.masterhead {
+        position: relative;
+        color: white;
+        background-size: cover;
+        padding-top: 8rem;
+        padding-bottom: 8rem;
+    }
+}
+
+.title-wrapper h2{
+    font-weight: 700;
+    font-size: 48px;
+}
+
+#aboutus{
+    text-align: center;
+}
+.about-holder{
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+}

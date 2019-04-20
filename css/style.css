@@ -1,0 +1,77 @@
+html,
+body {
+    height: 100%;
+    font-family: 'Metrophobic', sans-serif;
+}
+
+/*------Navbar----*/
+.navbar {
+    padding: 15px 0 15px 0;
+    color: white;
+}
+
+.navbar-nav {
+    color: white;
+}
+
+#nextgen-menu {
+    color: white
+}
+
+.navbar-nav>a {
+    color: white;
+    font-size: 17px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.navbar-dark .navbar-nav .nav-link a {
+    color: white;
+}
+
+.cgst-navbar {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 7px 0;
+}
+
+.navbar-right {
+    float: right !important;
+    margin-right: -15px;
+}
+
+/*-----Home-----*/
+
+#home {
+    height: 100%;
+}
+
+.home-wrapper {
+    height: 100%;
+    background-image: url("../img/homewallpaper.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.header-title h1 {
+    color: #fff;
+    font-size: 72px;
+    font-weight: 700;
+    padding-top: 25px;
+}
+
+.header-wrapper {
+    animation-delay: 1s;
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+.header-wrapper-inner {
+    animation-delay: 2s;
+    color: white;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}

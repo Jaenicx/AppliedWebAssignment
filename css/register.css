@@ -1,0 +1,30 @@
+html,
+body {
+    height: 100%;
+    font-family: 'Metrophobic', sans-serif;
+}
+
+#register{
+    font-family: 'Metrophobic', sans-serif;
+    height: 100%;
+    background-image: url("../img/registerwallpaper.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container {
+    height: 100%;
+    align-content: center;
+}
+
+.card{
+    animation-delay: 0.5s;
+    padding: 20px;
+    color: #fff;
+    min-height: 500px; 
+    margin-top: auto;
+    /*margin-bottom: auto;*/
+    width: 400px;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
