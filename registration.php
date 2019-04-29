@@ -1,23 +1,3 @@
-<?php
-// Initialize the session
-session_start();
- 
-// Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
-    exit;
-}
-?>
-
-<!--Set Cookie-->
-
-<?php 
-$Month = 2592000 + time();
-setcookie('test', date("F jS - g:i a"), $Month);
-//$var1 = $_Cookie['test'];
-//echo $var1."<br/>";
-?>
-
 
 <!DOCTYPE html>
 
@@ -43,11 +23,11 @@ setcookie('test', date("F jS - g:i a"), $Month);
 </head>
 
 <body>
-<?php include"navbar.php";?>
+
     <section id="pdf-form">
         <div class="pdf-form-holder d-flex justify-content-center">
             <div class="container">
-                        <form class="form-holder animated fadeInUp" action="pdfcreate.php" method="POST">
+                        <form class="form-holder animated fadeInUp" action="phpCreation.php" enctype="multipart/form-data" method="POST">
                             <div class="form-group">
                                     <h2 class="text-center">Enter Information</h2>
                                 <label>First Name:</label>
@@ -91,9 +71,16 @@ setcookie('test', date("F jS - g:i a"), $Month);
                             <div class="form-group">
                                 <label>Game Participating In</label>
                                 <input type="text" class="form-control" name="game_participation" /></div>
+                                <div>
+                                <label>Team Icon:</label>
+                                </div>
+                            	<div>
+  	  <input type="file" name="image">
+  	</div>
+  	<div>
+  	</div>
 
-
-                            <button class="btn btn-primary p-20 btnReg" type="submit" onclick="redirect()" value="Register"
+                            <button class="btn btn-primary p-20" type="submit" value="Register"
                                 name="submit">Submit</button>
 
                         </form>
@@ -103,10 +90,6 @@ setcookie('test', date("F jS - g:i a"), $Month);
         </div>
         </div>
     </section>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery-3.3.1.min.js">
-    <script src="js/script.js"></script>
-    <script src="js/custom.js"> </script>
 </body>
 
 </html>
