@@ -1,3 +1,24 @@
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?>
+
+<!--Set Cookie-->
+
+<?php 
+$Month = 2592000 + time();
+setcookie('test', date("F jS - g:i a"), $Month);
+//$var1 = $_Cookie['test'];
+//echo $var1."<br/>";
+?>
+
+
 <!DOCTYPE HTML>
 <html>
 
@@ -21,10 +42,13 @@
 </head>
 <body>
     <?php include"navbar.php";?>
+    
     <section id="home">
         <div class="home-wrapper animated zoomIn">
                         <div class="header-wrapper">
                             <div class="header-wrapper-inner">
+                                 <div class="page-header">
+    </div>
                                 <div class="header-title animated zoomIn">
                                    <h1>Welcome to Next Gen Gaming</h1>
                                 </div>

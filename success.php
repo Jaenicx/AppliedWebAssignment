@@ -1,4 +1,24 @@
 
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?>
+
+<!--Set Cookie-->
+
+<?php 
+$Month = 2592000 + time();
+setcookie('test', date("F jS - g:i a"), $Month);
+//$var1 = $_Cookie['test'];
+//echo $var1."<br/>";
+?>
+
 <!DOCTYPE <!DOCTYPE html>
 <html>
 
@@ -26,10 +46,10 @@
         <div class="container">
             <div class="d-flex justify-content-center h-100">
                 <div class="card animated fadeInUp">
-                    <h2 class="card-title mt-2">Registation Successful</h2>
+                    <h2 class="card-title mt-2 text-center">Successful</h2>
                     </header>
                    
-                    <div class="border-top card-body text-center"><a href="login.php">Log In</a></div>
+                    <div class="border-top card-body text-center"><a href="index.php">Home</a></div>
                 </div>
             </div>
         </div>

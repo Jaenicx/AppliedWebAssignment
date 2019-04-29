@@ -1,83 +1,105 @@
+
 <?php
-$firstName = $lastName = $email = $password = "";
-$firstNameErr = $lastNameErr = $emailErr = $passwordErr = "";
-
+// Include config file
+require_once "config.php";
+ 
+// Define variables and initialize with empty values
+$username = $password = $confirm_password = $type = "";
+$username_err = $password_err = $confirm_password_err = "";
+ 
+// Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-    $firstName = test_input($_POST["firstName"]);
-    $lastName = test_input($_POST["lastName"]);
-    $email = test_input($_POST["email"]);
-    $password = test_input($_POST["password"]);
-}
-
-function test_input($data){
-    $data = trim($data);
-    $data = stripcslashes($data);
-    $data = htmlspecialchars($data);
-
-    return $data;
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["firstName"])) {
-      $firstNameErr = "* First Name is required";
-    } else {
-      $firstName = test_input($_POST["firstName"]);
-      // check if name only contains letters and whitespace
-      if (!preg_match("/^[a-zA-Z ]*$/",$firstNameErr)) {
-        $firstNameErr = "Only letters and white space allowed"; 
-      }
+ 
+    // Validate username
+    if(empty(trim($_POST["username"]))){
+        $username_err = "Please enter a username.";
+    } else{
+        // Prepare a select statement
+        $sql = "SELECT id FROM users WHERE username = ?";
+        
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
+            
+            // Set parameters
+            $param_username = trim($_POST["username"]);
+            
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+                
+                if(mysqli_stmt_num_rows($stmt) == 1){
+                    $username_err = "This username is already taken.";
+                } else{
+                    $username = trim($_POST["username"]);
+                }
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+        }
+         
+        // Close statement
+        mysqli_stmt_close($stmt);
     }
-}
     
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["lastName"])) {
-      $lastNameErr = "* Last Name is required";
-    } else {
-      $lastName = test_input($_POST["lastName"]);
-      // check if name only contains letters and whitespace
-      if (!preg_match("/^[a-zA-Z ]*$/",$lastName)) {
-        $lastNameErr = "Only letters and white space allowed"; 
-      }
+    // Validate password
+    if(empty(trim($_POST["password"]))){
+        $password_err = "Please enter a password.";     
+    } elseif(strlen(trim($_POST["password"])) < 6){
+        $password_err = "Password must have atleast 6 characters.";
+    } else{
+        $password = trim($_POST["password"]);
     }
-}
-
-if ($_SERVER["REQUEST_METHOD"]=="POST"){
-   if (empty($_POST["email"])) {
-    $emailErr = "* Email is required";
-  } else {
-    $email = test_input($_POST["email"]);
-    // check if e-mail address is well-formed
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      $emailErr = "* Invalid email format"; 
+    
+    // Validate confirm password
+    if(empty(trim($_POST["confirm_password"]))){
+        $confirm_password_err = "Please confirm password.";     
+    } else{
+        $confirm_password = trim($_POST["confirm_password"]);
+        if(empty($password_err) && ($password != $confirm_password)){
+            $confirm_password_err = "Password did not match.";
+        }
     }
-  }
+    
+    // Check input errors before inserting in database
+    if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
+        
+        // Prepare an insert statement
+        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+         
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+            
+            // Set parameters
+            $param_username = $username;
+            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+            
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                // Redirect to login page
+                header("location: login.php");
+            } else{
+                echo "Something went wrong. Please try again later.";
+            }
+        }
+         
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+    
+    // Close connection
+    mysqli_close($link);
 }
-
-if($_SERVER["REQUEST_METHOD"]=="POST"){
-    if(empty($_POST["password"]))
-{
-    $passwordErr="* Password is required";
-
-}else{
-    $password= $_POST["password"];
-}
-}
-
-
 ?>
-
-<!DOCTYPE <!DOCTYPE html>
-<html>
-
+ 
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Next Gen | Register</title>
-    <!--Stylesheets-->
-    <link rel="stylesheet" type="text/css" href="css/register.css">
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+     <link rel="stylesheet" type="text/css" href="css/register.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
     <!--Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Metrophobic" rel="stylesheet">
@@ -89,55 +111,51 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     <!--Animation--->
     <link rel="stylesheet" href="css/animation/animate.css">
 </head>
-
 <body>
-<?php include"navbar.php";?>
-    <div id="register">
+    
 
+    <div id="register">
         <div class="container">
-            <div class="d-flex justify-content-center h-100 p-20">
+             <div class="d-flex justify-content-center h-100 p-20">
                 <div class="card animated fadeInUp">
-                    <h4 class="card-title mt-2">Sign up</h4>
-                    </header>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-                        <div class="form-group">
-                            <label>First name </label>
-                            <input type="text" class="form-control" placeholder="First Name" name=firstName>
-                            <span class="error"><br>
-                                <?php echo $firstNameErr; ?></span>
+                    <h2>Sign Up</h2>
+                    <p>Please fill this form to create an account.</p>
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                        <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                            <label>Username</label>
+                            <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
+                            <span class="help-block"><?php echo $username_err; ?></span>
+                        </div>    
+                        
+                        <div><fieldset><select name="role"><option value="" selected>Select Role</option>
+                            <option value="Admin">Admin</option>
+                            <option value="User">User</option>
+                        </select></fieldset></div>
+
+                        <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                            <label>Password</label>
+                            <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
+                            <span class="help-block"><?php echo $password_err; ?></span>
+                        </div>
+                        <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                            <label>Confirm Password</label>
+                            <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
+                            <span class="help-block"><?php echo $confirm_password_err; ?></span>
                         </div>
                         <div class="form-group">
-                            <label>Last name</label>
-                            <input type="text" class="form-control" placeholder="Last Name" name=lastName>
-                            <span class="error"><br>
-                                <?php echo $lastNameErr; ?></span>
+                            <input type="submit" class="btn btn-primary" value="Submit">
+                            
+                           <a class="btn btn-link" href="login.php">Cancel</a>
                         </div>
-                        <div class="form-group">
-                            <label>Email address</label>
-                            <input type="email" class="form-control" placeholder="Email" name=email>
-                            <span class="error"><br>
-                                <?php echo $emailErr; ?></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Create password</label>
-                            <input type="password" class="form-control" placeholder="Password" name=password>
-                            <span class="error"><br>
-                                <?php echo $passwordErr; ?></span>
-                        </div>
-                        <div class="form-group">
-                            <button id="submitButton" type="submit" onclick="register()" class="btn btn-primary btn-block"> Register </button>
-                        </div>
+                        <p>Already have an account? <a href="login.php">Login here</a></p>
                     </form>
-                    <div class="border-top card-body text-center">Have an account? <a href="login.php">Log In</a></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    </div>
+
+                 </div>
+             </div>
+        </div> 
+    </div> 
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-3.3.1.min.js">
-    <script src="js/script.js"></script>
+    <script src="js/script.js"></script>  
 </body>
-
 </html>

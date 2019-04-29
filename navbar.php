@@ -23,9 +23,24 @@
                     <a class="nav-item nav-link" href="index.php" style="color: white">Home</a>
                     <a class="nav-item nav-link" href="about.php" style="color: white">About Us</a>
                     <a class="nav-item nav-link" href="team.php" style="color: white">Teams</a>
-                    <a class="nav-item nav-link" href="login.php" style="color: white">Login</a> 
-                    <a class="nav-item nav-link" href="register.php" style="color: white">Register</a>
+                    <a class="nav-item nav-link" href="registration.php" style="color: white">Registration</a>
+                    <a class="nav-item nav-link" href="reset_password.php" style="color: white">Reset Pasword</a>
+                     <a class="nav-item nav-link" href="logout.php" style="color: white">Logout</a>
                 </div>
+                <span class="navbar-text mx-auto">
+     <a class="nav-item nav-link"> Hi, <b><?php echo htmlspecialchars($_SESSION["username"]);?>     <?php
+                if(isset($_COOKIE['test']))
+                {
+                $last = $_COOKIE['test'];
+                echo "Welcome back! You last visited on ". $last;
+                }
+                else
+                {
+                echo "Welcome to our site!";
+                }
+                ?> </b></a>
+ 
+    </span>
             </div>
         </nav>
     </header>

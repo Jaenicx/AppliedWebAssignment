@@ -7,7 +7,7 @@ body {
 #login{
     font-family: 'Metrophobic', sans-serif;
     height: 100%;
-    background-image: url("../img/loginwallpaper.jpg");
+    background-image: url("../img/wallpaper2.jpg");
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
@@ -26,6 +26,7 @@ body {
     animation-delay: 0.5s;
     min-height: 290px;
     margin-top: auto;
+    color: #fff;
     margin-bottom: auto;
     width: 400px;
     background-color: rgba(0, 0, 0, 0.5) !important;
@@ -53,4 +54,13 @@ input:focus {
 
 .links a {
     margin-left: 4px;
+}
+
+p{
+    color: #fff;
+
+}
+
+h2 {
+    color: #fff;
 }

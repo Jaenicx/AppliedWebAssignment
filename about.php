@@ -1,3 +1,24 @@
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?>
+
+<!--Set Cookie-->
+
+<?php 
+$Month = 2592000 + time();
+setcookie('test', date("F jS - g:i a"), $Month);
+//$var1 = $_Cookie['test'];
+//echo $var1."<br/>";
+?>
+
+
 <!DOCTYPE <!DOCTYPE html>
 <html>
 
@@ -8,6 +29,7 @@
     <title>Next Gen | About</title>
     <!--Stylesheets-->
     <link rel="stylesheet" type="text/css" href="css/about.css">
+    <link rel="stylesheet" type="text/css" href="css/emailstyle.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
     <!--Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Metrophobic" rel="stylesheet">
@@ -53,10 +75,44 @@
             </div>
         </div>
     </section>
+    <div class="container contact-form">
+            <div class="contact-image">
+                <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
+            </div>
+            <form method="POST">
+                <h3>Drop Us a Message</h3>
+               <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" name="txtName" class="form-control" placeholder="Your Name *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="txtEmail" class="form-control" placeholder="Your Email *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="txtSubject" class="form-control" placeholder="The Subject *" value="" />
+                        </div>
+                       
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <textarea name="txtMsg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="btnSubmit" class="btnContact" value="Send Message" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="contact-wrapper text-white text-center">
+            <h2>Contact Information:</h2>
+            <?php include "businesscard.php";?>
+            </div>
+            
+</div>
     <script src="js/bootstrap.min.js">
         < script src = "js/jquery-3.3.1.min.js" >
-            <
-            script src = "js/script.js" >
+            < script src = "js/script.js" >
     </script>
 
     <body>
