@@ -25,6 +25,7 @@
                     <a class="nav-item nav-link" href="team.php" style="color: white">Teams</a>
                     <a class="nav-item nav-link" href="registration.php" style="color: white">Registration</a>
                     <a class="nav-item nav-link" href="reset_password.php" style="color: white">Reset Pasword</a>
+                    <a class="nav-item nav-link" href="csv.php" style="color: white">Participants</a>      
                      <a class="nav-item nav-link" href="logout.php" style="color: white">Logout</a>
                 </div>
                 <span class="navbar-text mx-auto">
