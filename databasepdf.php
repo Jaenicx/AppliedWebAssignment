@@ -1,8 +1,8 @@
 <?php
 require 'fpdf/fpdf.php';
 
-$con=mysqli_connect('localhost','demo','root');
-mysqli_select_db($con,'demo');
+$con=mysqli_connect('localhost','root','');
+mysqli_select_db($con,'playerinfo');
 
 
 class PDF extends FPDF {

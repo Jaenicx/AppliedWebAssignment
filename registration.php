@@ -18,7 +18,6 @@ setcookie('test', date("F jS - g:i a"), $Month);
 //echo $var1."<br/>";
 ?>
 
-
 <!DOCTYPE html>
 
 <html>
@@ -43,70 +42,71 @@ setcookie('test', date("F jS - g:i a"), $Month);
 </head>
 
 <body>
-<?php include"navbar.php";?>
+    <?php include 'navbar.php';?>
     <section id="pdf-form">
         <div class="pdf-form-holder d-flex justify-content-center">
             <div class="container">
-                        <form class="form-holder animated fadeInUp" action="pdfcreate.php" method="POST">
-                            <div class="form-group">
-                                    <h2 class="text-center">Enter Information</h2>
-                                <label>First Name:</label>
-                                <input type="text" class="form-control" name="first_name" />
-                            </div>
-
-                            <div class="form-group">
-                                <label>Last Name:</label>
-                                <input type="text" class="form-control" name="last_name" />
-                            </div>
-
-                            <div class="form-group">
-                                <label>Gender:</label>
-                                <select name='gender' placeholder="--Choose Your Gender-">
-                                    <option value='Male'>Male</option>
-                                    <option value='Female'>Female</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Gamer Tag:</label>
-                                <input type="text" class="form-control" name="gamer_tag" />
-                            </div>
-
-
-                            <div class="form-group">
-                                <label>Team Name(If Available):</label>
-                                <input type="text" class="form-control" name="team_name" />
-                            </div>
-
-                            <div class="form-group">
-                                <label>Proficiency Level:</label>
-                                <select name='pro_level'>
-                                    <option value=''></option>
-                                    <option value='Pro'>Pro</option>
-                                    <option value='Semi-Pro'>Semi-Pro</option>
-                                    <option value='Amateur'>Amateur</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Game Participating In</label>
-                                <input type="text" class="form-control" name="game_participation" /></div>
-
-
-                            <button class="btn btn-primary p-20 btnReg" type="submit" onclick="redirect()" value="Register"
-                                name="submit">Submit</button>
-
-                        </form>
+                <form class="form-holder animated fadeInUp" action="pdfcreate.php" enctype="multipart/form-data"
+                    method="POST">
+                    <div class="form-group">
+                        <h2 class="text-center">Enter Information</h2>
+                        <label>First Name:</label>
+                        <input type="text" class="form-control" name="first_name" />
                     </div>
-                </div>
+
+                    <div class="form-group">
+                        <label>Last Name:</label>
+                        <input type="text" class="form-control" name="last_name" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gender:</label>
+                        <select name='gender' placeholder="--Choose Your Gender-">
+                            <option value='Male'>Male</option>
+                            <option value='Female'>Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Gamer Tag:</label>
+                        <input type="text" class="form-control" name="gamer_tag" />
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Team Name(If Available):</label>
+                        <input type="text" class="form-control" name="team_name" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Proficiency Level:</label>
+                        <select name='pro_level'>
+                            <option value=''></option>
+                            <option value='Pro'>Pro</option>
+                            <option value='Semi-Pro'>Semi-Pro</option>
+                            <option value='Amateur'>Amateur</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Game Participating In</label>
+                        <input type="text" class="form-control" name="game_participation" /></div>
+                    <div>
+                        <label>Team Icon:</label>
+                    </div>
+                    <div>
+                        <input type="file" name="image">
+                    </div>
+
+                    <button class="btn btn-primary p-20" type="submit" value="Register" name="submit">Submit</button>
+
+                </form>
             </div>
-        </div>
         </div>
     </section>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-3.3.1.min.js">
-    <script src="js/script.js"></script>
-    <script src="js/custom.js"> </script>
+    <script src="js/script.js"></script>  
 </body>
 
 </html>

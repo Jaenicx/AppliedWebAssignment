@@ -26,7 +26,7 @@ setcookie('test', date("F jS - g:i a"), $Month);
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Next Gen | Register</title>
+    <title>Next Gen | Mail</title>
     <!--Stylesheets-->
     <link rel="stylesheet" type="text/css" href="css/success.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
@@ -49,7 +49,7 @@ setcookie('test', date("F jS - g:i a"), $Month);
                     <h2 class="card-title mt-2 text-center">Successful</h2>
                     </header>
                    
-                    <div class="border-top card-body text-center"><a href="index.php">Home</a></div>
+                    <a class="btn btn-primary" href="index.php" role="button">Home</a>
                 </div>
             </div>
         </div>

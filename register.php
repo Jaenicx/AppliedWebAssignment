@@ -112,8 +112,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="css/animation/animate.css">
 </head>
 <body>
-    
-
     <div id="register">
         <div class="container">
              <div class="d-flex justify-content-center h-100 p-20">
@@ -128,8 +126,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         </div>    
                         
                         <div><fieldset><select name="role"><option value="" selected>Select Role</option>
-                            <option value="Admin">Admin</option>
-                            <option value="User">User</option>
+                            <option value="Admin">Coach</option>
+                            <option value="User">Player</option>
                         </select></fieldset></div>
 
                         <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">

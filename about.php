@@ -18,7 +18,6 @@ setcookie('test', date("F jS - g:i a"), $Month);
 //echo $var1."<br/>";
 ?>
 
-
 <!DOCTYPE <!DOCTYPE html>
 <html>
 
@@ -79,7 +78,7 @@ setcookie('test', date("F jS - g:i a"), $Month);
             <div class="contact-image">
                 <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
             </div>
-            <form method="POST">
+            <form action ="mail.php" method="POST">
                 <h3>Drop Us a Message</h3>
                <div class="row">
                     <div class="col-md-6">

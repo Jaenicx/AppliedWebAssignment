@@ -59,17 +59,28 @@ if(!empty($_POST['submit'])){
 
     $pdf->Output();
 
-    header("Location: success.php", true, 301);
-
-    $mysqli = new mysqli('localhost','demo','root');
+    
+    $mysqli = new mysqli('localhost','root','','playerinfo');
 
     if($mysqli->connect_error){
 
         die('Connect Error: '.$mysqli->connect_errno.':'.$mysqli->connect_error);
     }
 
-    $sql = "INSERT INTO esports_players (f_name, l_name, gender, gamer_tag, team_name, proficiency_level, game) VALUES ( '{$mysqli->real_escape_string($_POST['first_name'])}','{$mysqli->real_escape_string($_POST['last_name'])}','{$mysqli->real_escape_string($_POST['gender'])}','{$mysqli->real_escape_string($_POST['gamer_tag'])}','{$mysqli->real_escape_string($_POST['team_name'])}','{$mysqli->real_escape_string($_POST['pro_level'])}','{$mysqli->real_escape_string($_POST['game_participation'])}' ) ";
+    // Get image name
+    $image = $_FILES['image']['name'];
+
+     // image file directory
+     $target = "images/".basename($image);
+
+    $sql = "INSERT INTO esports_players (f_name, l_name, gender, gamer_tag, team_name, proficiency_level, game,image) VALUES ( '{$mysqli->real_escape_string($_POST['first_name'])}','{$mysqli->real_escape_string($_POST['last_name'])}','{$mysqli->real_escape_string($_POST['gender'])}','{$mysqli->real_escape_string($_POST['gamer_tag'])}','{$mysqli->real_escape_string($_POST['team_name'])}','{$mysqli->real_escape_string($_POST['pro_level'])}','{$mysqli->real_escape_string($_POST['game_participation'])}','$image' ) ";
     $insert = $mysqli->query($sql);
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+        $msg = "Image uploaded successfully";
+    }else{
+        $msg = "Failed to upload image";
+    }
+    // execute query
 
     if($insert){
 
@@ -77,55 +88,12 @@ if(!empty($_POST['submit'])){
     }else{
         die("Error: {$mysqli->errno } : {$mysqli->error}");
     }
+    $result = mysqli_query($mysqli, "SELECT * FROM esports_players");
     $mysqli->close();
 
     
 }
 
-
+	
 ?>
 
-<?php
-
-
-?>
-<!DOCTYPE <!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Next Gen | Register</title>
-    <!--Stylesheets-->
-    <link rel="stylesheet" type="text/css" href="css/success.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
-    <!--Fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Metrophobic" rel="stylesheet">
-    <!--Icons-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-        crossorigin="anonymous">
-    <!--Header Icon-->
-    <link rel="shortcut icon" href="img/N-White.png">
-    <!--Animation--->
-    <link rel="stylesheet" href="css/animation/animate.css">
-</head>
-
-<body>
-    <div id="success">
-        <div class="container">
-            <div class="d-flex justify-content-center h-100">
-                <div class="card animated fadeInUp">
-                    <h2 class="card-title mt-2">Successful</h2>
-                    </header>
-                   
-                    <div class="border-top card-body text-center"><a href="index.php">Home</a></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    </div>
-</body>
-
-</html>
