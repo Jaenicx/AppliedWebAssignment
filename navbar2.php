@@ -24,6 +24,7 @@
                     <a class="nav-item nav-link" href="about.php" style="color: white">About Us</a>
                     <a class="nav-item nav-link" href="team.php" style="color: white">Teams</a>
                     <a class="nav-item nav-link" href="logout.php" style="color: white">Logout</a>
+                    <a class="nav-item nav-link" href="cvs.php" style="color: white">Participants</a>
                 </div>
             </div>
         </nav>

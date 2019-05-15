@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 // Initialize the session
 session_start();
@@ -17,6 +18,8 @@ setcookie('test', date("F jS - g:i a"), $Month);
 //$var1 = $_Cookie['test'];
 //echo $var1."<br/>";
 ?>
+=======
+>>>>>>> 4749687fdc0d35f04093f885c46a477cde1a6372
 
 <!DOCTYPE html>
 
@@ -42,6 +45,7 @@ setcookie('test', date("F jS - g:i a"), $Month);
 </head>
 
 <body>
+<<<<<<< HEAD
     <?php include 'navbar.php';?>
     <section id="pdf-form">
         <div class="pdf-form-holder d-flex justify-content-center">
@@ -53,6 +57,23 @@ setcookie('test', date("F jS - g:i a"), $Month);
                         <label>First Name:</label>
                         <input type="text" class="form-control" name="first_name" />
                     </div>
+=======
+
+    <section id="pdf-form">
+        <div class="pdf-form-holder d-flex justify-content-center">
+            <div class="container">
+                        <form class="form-holder animated fadeInUp" action="phpCreation.php" enctype="multipart/form-data" method="POST">
+                            <div class="form-group">
+                                    <h2 class="text-center">Enter Information</h2>
+                                <label>First Name:</label>
+                                <input type="text" class="form-control" name="first_name" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Last Name:</label>
+                                <input type="text" class="form-control" name="last_name" />
+                            </div>
+>>>>>>> 4749687fdc0d35f04093f885c46a477cde1a6372
 
                     <div class="form-group">
                         <label>Last Name:</label>
@@ -78,6 +99,7 @@ setcookie('test', date("F jS - g:i a"), $Month);
                         <input type="text" class="form-control" name="team_name" />
                     </div>
 
+<<<<<<< HEAD
                     <div class="form-group">
                         <label>Proficiency Level:</label>
                         <select name='pro_level'>
@@ -99,14 +121,33 @@ setcookie('test', date("F jS - g:i a"), $Month);
                     </div>
 
                     <button class="btn btn-primary p-20" type="submit" value="Register" name="submit">Submit</button>
+=======
+                            <div class="form-group">
+                                <label>Game Participating In</label>
+                                <input type="text" class="form-control" name="game_participation" /></div>
+                                <div>
+                                <label>Team Icon:</label>
+                                </div>
+                            	<div>
+  	  <input type="file" name="image">
+  	</div>
+  	<div>
+  	</div>
+
+                            <button class="btn btn-primary p-20" type="submit" value="Register"
+                                name="submit">Submit</button>
+>>>>>>> 4749687fdc0d35f04093f885c46a477cde1a6372
 
                 </form>
             </div>
         </div>
     </section>
+<<<<<<< HEAD
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-3.3.1.min.js">
     <script src="js/script.js"></script>  
+=======
+>>>>>>> 4749687fdc0d35f04093f885c46a477cde1a6372
 </body>
 
 </html>

@@ -60,7 +60,11 @@ if(!empty($_POST['submit'])){
     $pdf->Output();
 
     
+<<<<<<< HEAD
     $mysqli = new mysqli('localhost','root','','playerinfo');
+=======
+    $mysqli = new mysqli('localhost','demo','root');
+>>>>>>> 4749687fdc0d35f04093f885c46a477cde1a6372
 
     if($mysqli->connect_error){
 
